@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Login | FractureAI{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>FractureAI Login</h1>
+  <form method="post" class="form">
+    <label>Username <input type="text" name="username" required autofocus></label>
+    <label>Password <input type="password" name="password" required></label>
+    <button type="submit" class="btn primary">Sign In</button>
+  </form>
+  {% if error %}<p class="message error">{{ error }}</p>{% endif %}
+  <p class="muted">Default login: admin / admin123</p>
+</section>
+{% endblock %}

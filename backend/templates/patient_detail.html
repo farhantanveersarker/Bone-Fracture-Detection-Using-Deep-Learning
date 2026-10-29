@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ patient.name }} | FractureAI{% endblock %}
+{% block content %}
+<section class="card">
+  <div class="row">
+    <h1>{{ patient.name }}</h1>
+    <div class="actions">
+      <a href="{{ url_for('edit_patient', patient_id=patient.id) }}" class="btn">Edit</a>
+      <form method="post" action="{{ url_for('remove_patient', patient_id=patient.id) }}"
+            onsubmit="return confirm('Delete this patient record?');">
+        <button type="submit" class="btn danger">Delete</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="detail">
+    <dl>
+      <dt>Patient ID</dt><dd>{{ patient.id }}</dd>
+      <dt>Age</dt><dd>{{ patient.age if patient.age is not none else '-' }}</dd>
+      <dt>Gender</dt><dd>{{ patient.gender or '-' }}</dd>
+      <dt>Phone</dt><dd>{{ patient.phone or '-' }}</dd>
+      <dt>Notes</dt><dd>{{ patient.notes or '-' }}</dd>
+      <dt>Result</dt>
+      <dd>
+        {% if patient.result %}
+        <span class="badge {{ 'danger' if patient.result == 'Fracture' else 'ok' }}">{{ patient.result }}</span>
+        ({{ '%.2f' % patient.confidence }}% confidence)
+        {% else %}No prediction{% endif %}
+      </dd>
+      <dt>Created</dt><dd>{{ patient.created_at }}</dd>
+      <dt>Updated</dt><dd>{{ patient.updated_at }}</dd>
+    </dl>
+
+    {% if patient.xray_image %}
+    <img src="{{ url_for('uploaded_file', filename=patient.xray_image) }}" alt="X-ray" class="xray">
+    {% endif %}
+  </div>
+  <p class="muted">AI screening only. Results must be reviewed by a qualified doctor.</p>
+</section>
+{% endblock %}

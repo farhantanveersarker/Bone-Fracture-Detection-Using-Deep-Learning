@@ -1,0 +1,61 @@
+{
+  "model": "MobileNetV2 transfer learning (frozen base, 128-64-1 head)",
+  "model_file": "bone_fracture_model.h5",
+  "input_size": [
+    224,
+    224,
+    3
+  ],
+  "positive_class": "fractured",
+  "class_indices": {
+    "fractured": 0,
+    "non_fractured": 1
+  },
+  "evaluated_at": "2026-10-29T18:03:31+00:00",
+  "validation": {
+    "threshold": 0.5,
+    "accuracy": 0.8707037643207856,
+    "balanced_accuracy": 0.649245290016318,
+    "precision": 0.868421052631579,
+    "recall_sensitivity": 0.308411214953271,
+    "specificity": 0.9900793650793651,
+    "npv": 0.8708551483420593,
+    "f1_score": 0.4551724137931034,
+    "macro_f1": 0.6909102551788173,
+    "roc_auc": 0.8526739356178609,
+    "confusion_matrix": {
+      "tp": 33,
+      "fp": 5,
+      "tn": 499,
+      "fn": 74
+    },
+    "samples": 611,
+    "class_counts": {
+      "fractured": 107,
+      "non_fractured": 504
+    }
+  },
+  "test": {
+    "threshold": 0.5,
+    "accuracy": 0.8845528455284553,
+    "balanced_accuracy": 0.6887079812887551,
+    "precision": 0.9130434782608695,
+    "recall_sensitivity": 0.3853211009174312,
+    "specificity": 0.9920948616600791,
+    "npv": 0.8822495606326889,
+    "f1_score": 0.5419354838709678,
+    "macro_f1": 0.7379444861215304,
+    "roc_auc": 0.8804619791855531,
+    "confusion_matrix": {
+      "tp": 42,
+      "fp": 4,
+      "tn": 502,
+      "fn": 67
+    },
+    "samples": 615,
+    "class_counts": {
+      "fractured": 109,
+      "non_fractured": 506
+    }
+  }
+}

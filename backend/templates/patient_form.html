@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% set editing = patient.id %}
+{% block title %}{{ 'Edit' if editing else 'New' }} Patient | FractureAI{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>{{ 'Edit Patient' if editing else 'New Patient' }}</h1>
+  <form method="post" enctype="multipart/form-data" class="form">
+    <label>Name * <input type="text" name="name" value="{{ patient.name or '' }}" required></label>
+    <div class="two-col">
+      <label>Age <input type="number" name="age" min="0" max="130" value="{{ patient.age if patient.age is not none else '' }}"></label>
+      <label>Gender
+        <select name="gender">
+          {% for option in ['', 'Male', 'Female', 'Other'] %}
+          <option value="{{ option }}" {{ 'selected' if (patient.gender or '') == option }}>{{ option or 'Select' }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    </div>
+    <label>Phone <input type="text" name="phone" value="{{ patient.phone or '' }}"></label>
+    <label>Notes <textarea name="notes" rows="3">{{ patient.notes or '' }}</textarea></label>
+    <label>X-ray image{% if editing and patient.xray_image %} (upload to replace){% endif %}
+      <input type="file" name="xray_image" accept=".png,.jpg,.jpeg">
+    </label>
+    <div class="row">
+      <a href="{{ url_for('view_patient', patient_id=patient.id) if editing else url_for('index') }}" class="btn">Cancel</a>
+      <button type="submit" class="btn primary">{{ 'Save Changes' if editing else 'Create Patient' }}</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

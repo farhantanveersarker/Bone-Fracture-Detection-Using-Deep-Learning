@@ -1,0 +1,21 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.vscode/
+.idea/
+fractureai.db
+uploads/
+*.log
+.env
+.DS_Store
+
+# Dataset images (large, download separately)
+dataset/train/
+dataset/val/
+dataset/test/
+
+# Trained model weights
+model/*.h5
+model/*.keras
